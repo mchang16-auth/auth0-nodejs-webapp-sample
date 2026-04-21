@@ -10,7 +10,7 @@ import (
   "os"
 )
 
-func getAccessToken() string {
+func main() {
   url := "https://" + os.Getenv("AUTH0_DOMAIN") + "/oauth/token"
 
   payloadData := map[string]string{
@@ -34,24 +34,5 @@ func getAccessToken() string {
     log.Fatalf("Error getting token: %s", string(body))
   }
 
-  return accessToken
-}
-
-func callAPI(accessToken string) {
-  apiReq, _ := http.NewRequest("GET", "%API_ENDPOINT%", nil)
-  apiReq.Header.Add("authorization", "Bearer "+accessToken)
-  apiRes, _ := http.DefaultClient.Do(apiReq)
-  defer apiRes.Body.Close()
-  apiBody, _ := io.ReadAll(apiRes.Body)
-
-  if apiRes.StatusCode != http.StatusOK {
-    log.Fatalf("Error calling API: %s", string(apiBody))
-  }
-
-  fmt.Println("Response:", string(apiBody))
-}
-
-func main() {
-  accessToken := getAccessToken()
-  callAPI(accessToken)
+  fmt.Println("Access Token:", accessToken)
 }

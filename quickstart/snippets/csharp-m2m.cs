@@ -2,18 +2,13 @@ using Newtonsoft.Json;
 using RestSharp;
 
 // Request access token from Auth0
-var auth0Domain = Environment.GetEnvironmentVariable("AUTH0_DOMAIN");
-var clientId = Environment.GetEnvironmentVariable("AUTH0_CLIENT_ID");
-var clientSecret = Environment.GetEnvironmentVariable("AUTH0_CLIENT_SECRET");
-var audience = Environment.GetEnvironmentVariable("AUTH0_AUDIENCE");
-
-var client = new RestClient($"https://{auth0Domain}/oauth/token");
+var client = new RestClient($"https://{Environment.GetEnvironmentVariable("AUTH0_DOMAIN")}/oauth/token");
 var request = new RestRequest(Method.Post);
 var tokenRequest = new
 {
-    client_id = clientId,
-    client_secret = clientSecret,
-    audience = audience,
+    client_id = Environment.GetEnvironmentVariable("AUTH0_CLIENT_ID"),
+    client_secret = Environment.GetEnvironmentVariable("AUTH0_CLIENT_SECRET"),
+    audience = Environment.GetEnvironmentVariable("AUTH0_AUDIENCE"),
     grant_type = "client_credentials"
 };
 
@@ -32,7 +27,7 @@ string accessToken = tokenResponse.access_token;
 // Make API request using the access token
 var apiClient = new RestClient("%API_ENDPOINT%");
 var apiRequest = new RestRequest(Method.Get);
-apiRequest.AddHeader("authorization", $"Bearer {accessToken}");
+apiRequest.AddHeader("Authorization", $"Bearer {accessToken}");
 RestResponse apiResponse = apiClient.Execute(apiRequest);
 
 if (!apiResponse.IsSuccessful)
