@@ -40,6 +40,12 @@ snippets:
   curlCallApi: &curlCallApi
     source: "quickstart/snippets/curl-call-api.sh"
     language: "bash"
+  csharpGetToken: &csharpGetToken
+    source: "quickstart/snippets/csharp-get-token.cs"
+    language: "csharp"
+  csharpCallApi: &csharpCallApi
+    source: "quickstart/snippets/csharp-call-api.cs"
+    language: "csharp"
   goGetToken: &goGetToken
     source: "quickstart/snippets/go-get-token.go"
     language: "go"
