@@ -28,7 +28,7 @@ string GetAccessToken()
 
 string CallApi(string accessToken)
 {
-    var apiClient = new RestClient("%API_ENDPOINT%");
+    var apiClient = new RestClient(Environment.GetEnvironmentVariable("API_ENDPOINT"));
     var apiRequest = new RestRequest(Method.Get);
     apiRequest.AddHeader("Authorization", $"Bearer {accessToken}");
     RestResponse apiResponse = apiClient.Execute(apiRequest);

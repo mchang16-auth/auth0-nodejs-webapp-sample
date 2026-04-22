@@ -29,7 +29,7 @@ def get_access_token
 end
 
 def call_api(access_token)
-  api_url = URI("%API_ENDPOINT%")
+  api_url = URI(ENV['API_ENDPOINT'])
   api_http = Net::HTTP.new(api_url.host, api_url.port)
   api_request = Net::HTTP::Get.new(api_url)
   api_request["authorization"] = "Bearer #{access_token}"

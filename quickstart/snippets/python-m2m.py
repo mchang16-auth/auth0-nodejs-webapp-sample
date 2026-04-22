@@ -22,7 +22,7 @@ def get_access_token():
 
 def call_api(access_token):
     api_response = requests.get(
-        "%API_ENDPOINT%",
+        os.getenv("API_ENDPOINT"),
         headers={"authorization": "Bearer " + access_token}
     )
 

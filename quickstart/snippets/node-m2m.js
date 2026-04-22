@@ -24,7 +24,7 @@ async function getAccessToken() {
 }
 
 async function callAPI(accessToken) {
-  const apiResponse = await fetch("%API_ENDPOINT%", {
+  const apiResponse = await fetch(process.env.API_ENDPOINT, {
     method: "GET",
     headers: {
       authorization: `Bearer ${accessToken}`,

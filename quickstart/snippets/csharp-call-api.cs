@@ -1,6 +1,6 @@
 using RestSharp;
 
-var apiClient = new RestClient("%API_ENDPOINT%");
+var apiClient = new RestClient(Environment.GetEnvironmentVariable("API_ENDPOINT"));
 var apiRequest = new RestRequest(Method.Get);
 apiRequest.AddHeader("Authorization", "Bearer <Your Access Token>");
 RestResponse apiResponse = apiClient.Execute(apiRequest);

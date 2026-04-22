@@ -43,7 +43,7 @@ function callAPI($accessToken) {
   $apiCurl = curl_init();
 
   curl_setopt_array($apiCurl, array(
-    CURLOPT_URL => "%API_ENDPOINT%",
+    CURLOPT_URL => getenv("API_ENDPOINT"),
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,

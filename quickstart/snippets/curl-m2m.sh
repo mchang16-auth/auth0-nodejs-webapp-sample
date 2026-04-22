@@ -23,5 +23,5 @@ fi
 
 # Use the access token in the API request
 curl --request GET \
-    --url %API_ENDPOINT% \
+    --url ${API_ENDPOINT} \
     --header "authorization: Bearer ${ACCESS_TOKEN}"

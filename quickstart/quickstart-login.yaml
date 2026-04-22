@@ -37,6 +37,7 @@ snippets:
       AUTH0_CLIENT_SECRET=%AUTH0_CLIENT_SECRET%
       AUTH0_AUDIENCE=%AUTH0_AUDIENCE%
       AUTH0_SCOPE=%AUTH0_SCOPE%
+      API_ENDPOINT=%API_ENDPOINT%
     language: "bash"
   curlGetToken: &curlGetToken
     source: "quickstart/snippets/curl-get-token.sh"

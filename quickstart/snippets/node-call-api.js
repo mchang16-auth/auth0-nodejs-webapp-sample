@@ -1,5 +1,5 @@
 async function callApi() {
-  const apiResponse = await fetch("%API_ENDPOINT%", {
+  const apiResponse = await fetch(process.env.API_ENDPOINT, {
     method: "GET",
     headers: {
       authorization: "Bearer <Your Access Token>",

@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-  apiReq, _ := http.NewRequest("GET", "%API_ENDPOINT%", nil)
+  apiReq, _ := http.NewRequest("GET", os.Getenv("API_ENDPOINT"), nil)
   apiReq.Header.Add("authorization", "Bearer <Your Access Token>")
   apiRes, _ := http.DefaultClient.Do(apiReq)
   defer apiRes.Body.Close()

@@ -1,7 +1,7 @@
 import requests
 
 api_response = requests.get(
-    "%API_ENDPOINT%",
+    os.getenv("API_ENDPOINT"),
     headers={"authorization": "Bearer <Your Access Token>"}
 )
 

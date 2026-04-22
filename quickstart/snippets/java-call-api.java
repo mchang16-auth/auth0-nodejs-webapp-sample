@@ -3,7 +3,7 @@ import kong.unirest.Unirest;
 
 public class CallApi {
   public static void main(String[] args) {
-    HttpResponse<String> apiResponse = Unirest.get("%API_ENDPOINT%")
+    HttpResponse<String> apiResponse = Unirest.get(System.getenv("API_ENDPOINT"))
       .header("authorization", "Bearer <Your Access Token>")
       .asString();
 

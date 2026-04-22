@@ -25,7 +25,7 @@ public class M2M {
   }
 
   public static void callAPI(String accessToken) {
-    HttpResponse<String> apiResponse = Unirest.get("%API_ENDPOINT%")
+    HttpResponse<String> apiResponse = Unirest.get(System.getenv("API_ENDPOINT"))
       .header("authorization", "Bearer " + accessToken)
       .asString();
 
