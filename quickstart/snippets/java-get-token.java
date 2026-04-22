@@ -8,6 +8,7 @@ public class GetToken {
       .put("client_id", System.getenv("AUTH0_CLIENT_ID"))
       .put("client_secret", System.getenv("AUTH0_CLIENT_SECRET"))
       .put("audience", System.getenv("AUTH0_AUDIENCE"))
+      .put("scope", System.getenv("AUTH0_SCOPE"))
       .put("grant_type", "client_credentials");
 
     HttpResponse<String> response = Unirest.post("https://" + System.getenv("AUTH0_DOMAIN") + "/oauth/token")

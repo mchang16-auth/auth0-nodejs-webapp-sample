@@ -14,6 +14,7 @@ def get_access_token
     client_id: ENV['AUTH0_CLIENT_ID'],
     client_secret: ENV['AUTH0_CLIENT_SECRET'],
     audience: ENV['AUTH0_AUDIENCE'],
+    scope: ENV['AUTH0_SCOPE'],
     grant_type: "client_credentials"
   }.to_json
 

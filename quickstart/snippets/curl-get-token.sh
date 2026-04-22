@@ -5,5 +5,6 @@ curl --request POST \
     \"client_id\":\"${AUTH0_CLIENT_ID}\",
     \"client_secret\":\"${AUTH0_CLIENT_SECRET}\",
     \"audience\":\"${AUTH0_AUDIENCE}\",
+    \"scope\":\"${AUTH0_SCOPE}\",
     \"grant_type\":\"client_credentials\"
   }"

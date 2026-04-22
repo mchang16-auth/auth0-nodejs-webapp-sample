@@ -17,6 +17,7 @@ func getAccessToken() string {
     "client_id":     os.Getenv("AUTH0_CLIENT_ID"),
     "client_secret": os.Getenv("AUTH0_CLIENT_SECRET"),
     "audience":      os.Getenv("AUTH0_AUDIENCE"),
+    "scope":         os.Getenv("AUTH0_SCOPE"),
     "grant_type":    "client_credentials",
   }
   payloadBytes, _ := json.Marshal(payloadData)

@@ -14,6 +14,7 @@ curl_setopt_array($curl, array(
     "client_id" => getenv("AUTH0_CLIENT_ID"),
     "client_secret" => getenv("AUTH0_CLIENT_SECRET"),
     "audience" => getenv("AUTH0_AUDIENCE"),
+    "scope" => getenv("AUTH0_SCOPE"),
     "grant_type" => "client_credentials"
   )),
   CURLOPT_HTTPHEADER => array(

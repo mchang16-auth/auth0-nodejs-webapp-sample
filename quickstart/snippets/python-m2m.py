@@ -9,6 +9,7 @@ def get_access_token():
             "client_id": os.getenv("AUTH0_CLIENT_ID"),
             "client_secret": os.getenv("AUTH0_CLIENT_SECRET"),
             "audience": os.getenv("AUTH0_AUDIENCE"),
+            "scope": os.getenv("AUTH0_SCOPE"),
             "grant_type": "client_credentials"
         }
     )

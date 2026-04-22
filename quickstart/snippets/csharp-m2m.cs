@@ -10,6 +10,7 @@ string GetAccessToken()
         client_id = Environment.GetEnvironmentVariable("AUTH0_CLIENT_ID"),
         client_secret = Environment.GetEnvironmentVariable("AUTH0_CLIENT_SECRET"),
         audience = Environment.GetEnvironmentVariable("AUTH0_AUDIENCE"),
+        scope = Environment.GetEnvironmentVariable("AUTH0_SCOPE"),
         grant_type = "client_credentials"
     };
 

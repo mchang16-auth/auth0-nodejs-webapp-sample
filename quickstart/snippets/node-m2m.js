@@ -8,6 +8,7 @@ async function getAccessToken() {
         client_id: process.env.AUTH0_CLIENT_ID,
         client_secret: process.env.AUTH0_CLIENT_SECRET,
         audience: process.env.AUTH0_AUDIENCE,
+        scope: process.env.AUTH0_SCOPE,
         grant_type: "client_credentials",
       }),
     },
