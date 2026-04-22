@@ -146,6 +146,7 @@ steps:
       - type: snippet
         sources:
           - <<: *curlGetToken
+          - <<: *csharpGetToken
           - <<: *goGetToken
           - <<: *javaGetToken
           - <<: *nodeGetToken
@@ -159,6 +160,7 @@ steps:
       - type: snippet
         sources:
           - <<: *curlCallApi
+          - <<: *csharpCallApi
           - <<: *goCallApi
           - <<: *javaCallApi
           - <<: *nodeCallApi
