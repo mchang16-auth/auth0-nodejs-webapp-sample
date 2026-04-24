@@ -1,7 +1,6 @@
 appType: "m2m"
 technology: "m2m"
 technologyLabel: "Machine-to-Machine"
-defaultEnvFileName: &defaultEnvFileName ".env.local"
 
 inputs:
   auth0Domain:
@@ -29,163 +28,108 @@ placeholders:
     inputKey: "apiEndpoint"
 
 snippets:
-  env: &env
-    fileName: *defaultEnvFileName
+  envBash: &envBash
+    label: "macOS / Linux"
+    platform: "unix"
     content: |
-      AUTH0_DOMAIN=%AUTH0_DOMAIN%
-      AUTH0_CLIENT_ID=%AUTH0_CLIENT_ID%
-      AUTH0_CLIENT_SECRET=%AUTH0_CLIENT_SECRET%
-      AUTH0_AUDIENCE=%AUTH0_AUDIENCE%
-      AUTH0_SCOPE=%AUTH0_SCOPE%
-      API_ENDPOINT=%API_ENDPOINT%
+      export AUTH0_CLIENT_SECRET="%AUTH0_CLIENT_SECRET%"
     language: "bash"
-  curlGetToken: &curlGetToken
-    source: "quickstart/snippets/curl-get-token.sh"
+  envPowershell: &envPowershell
+    label: "PowerShell"
+    platform: "windows"
+    content: |
+      $env:AUTH0_CLIENT_SECRET="%AUTH0_CLIENT_SECRET%"
     language: "bash"
-  curlCallApi: &curlCallApi
-    source: "quickstart/snippets/curl-call-api.sh"
+  envCmd: &envCmd
+    label: "Windows CMD"
+    content: |
+      set AUTH0_CLIENT_SECRET=%AUTH0_CLIENT_SECRET%
     language: "bash"
-  csharpGetToken: &csharpGetToken
-    source: "quickstart/snippets/csharp-get-token.cs"
+  m2mCsharp: &m2mCsharp
+    source: "csharp/m2m.cs"
     language: "csharp"
-  csharpCallApi: &csharpCallApi
-    source: "quickstart/snippets/csharp-call-api.cs"
-    language: "csharp"
-  goGetToken: &goGetToken
-    source: "quickstart/snippets/go-get-token.go"
+  m2mGo: &m2mGo
+    source: "go/m2m.go"
     language: "go"
-  goCallApi: &goCallApi
-    source: "quickstart/snippets/go-call-api.go"
-    language: "go"
-  javaGetToken: &javaGetToken
-    source: "quickstart/snippets/java-get-token.java"
+  m2mJava: &m2mJava
+    source: "java/m2m.java"
     language: "java"
-  javaCallApi: &javaCallApi
-    source: "quickstart/snippets/java-call-api.java"
-    language: "java"
-  nodeGetToken: &nodeGetToken
-    source: "quickstart/snippets/node-get-token.js"
+  m2mNode: &m2mNode
+    source: "node/m2m.js"
     language: "nodejs"
-  nodeCallApi: &nodeCallApi
-    source: "quickstart/snippets/node-call-api.js"
-    language: "nodejs"
-  phpGetToken: &phpGetToken
-    source: "quickstart/snippets/php-get-token.php"
+  m2mPhp: &m2mPhp
+    source: "php/m2m.php"
     language: "php"
-  phpCallApi: &phpCallApi
-    source: "quickstart/snippets/php-call-api.php"
-    language: "php"
-  pythonGetToken: &pythonGetToken
-    source: "quickstart/snippets/python-get-token.py"
+  m2mPython: &m2mPython
+    source: "python/m2m.py"
     language: "python"
-  pythonCallApi: &pythonCallApi
-    source: "quickstart/snippets/python-call-api.py"
-    language: "python"
-  rubyGetToken: &rubyGetToken
-    source: "quickstart/snippets/ruby-get-token.rb"
+  m2mRuby: &m2mRuby
+    source: "ruby/m2m.rb"
     language: "ruby"
-  rubyCallApi: &rubyCallApi
-    source: "quickstart/snippets/ruby-call-api.rb"
-    language: "ruby"
-
-  # m2mCurl: &m2mCurl
-  #   source: "quickstart/snippets/curl-m2m.sh"
-  #   language: "bash"
-  # csharp: &m2mCsharp
-  #   source: "quickstart/snippets/csharp-m2m.cs"
-  #   language: "csharp"
-  # go: &m2mGo
-  #   source: "quickstart/snippets/go-m2m.go"
-  #   language: "go"
-  # java: &m2mJava
-  #   source: "quickstart/snippets/java-m2m.java"
-  #   language: "java"
-  # node: &m2mNode
-  #   source: "quickstart/snippets/node-m2m.js"
-  #   language: "nodejs"
-  # php: &m2mPhp
-  #   source: "quickstart/snippets/php-m2m.php"
-  #   language: "php"
-  # python: &m2mPython
-  #   source: "quickstart/snippets/python-m2m.py"
-  #   language: "python"
-  # ruby: &m2mRuby
-  #   source: "quickstart/snippets/ruby-m2m.rb"
-  #   language: "ruby"
-
-# steps:
-#  - title: "Configure environment variables"
-#    contentBlocks:
-#       - type: markdown
-#         source: "quickstart/markdown/env-config.md"
-#       - type: snippet
-#         <<: *env
-#  - title: "Obtaining an Access Token & Calling your API"
-#    contentBlocks:
-#      - type: markdown
-#        source: "quickstart/markdown/obtain-access-token.md"
-#      - type: markdown
-#        source: "quickstart/markdown/access-api.md"
-#      - type: snippet
-#        sources:
-#          - <<: *m2mCurl
-#          - <<: *m2mCsharp
-#          - <<: *m2mGo
-#          - <<: *m2mJava
-#          - <<: *m2mNode
-#          - <<: *m2mPhp
-#          - <<: *m2mPython
-#          - <<: *m2mRuby
+  runCsharp: &runCsharp
+    source: "csharp/run.sh"
+    language: "bash"
+    technology: "csharp"
+  runGo: &runGo
+    source: "go/run.sh"
+    language: "bash"
+    technology: "go"
+  runJava: &runJava
+    source: "java/run.sh"
+    language: "bash"
+    technology: "java"
+  runNode: &runNode
+    source: "node/run.sh"
+    language: "bash"
+    technology: "nodejs"
+  runPhp: &runPhp
+    source: "php/run.sh"
+    language: "bash"
+    technology: "php"
+  runPython: &runPython
+    source: "python/run.sh"
+    language: "bash"
+    technology: "python"
+  runRuby: &runRuby
+    source: "ruby/run.sh"
+    language: "bash"
+    technology: "ruby"
 
 steps:
-  - title: "Configure environment variables"
+  - title: "Set your credentials"
     contentBlocks:
-      - type: markdown
-        source: "quickstart/markdown/env-config.md"
       - type: snippet
-        <<: *env
-  - title: "Obtaining an Access Token"
+        group: "os"
+        sources:
+          - <<: *envBash
+          - <<: *envPowershell
+          - <<: *envCmd
+  - title: "Obtaining an Access Token & Calling your API"
     contentBlocks:
       - type: markdown
         source: "quickstart/markdown/obtain-access-token.md"
-      - type: snippet
-        sources:
-          - <<: *curlGetToken
-          - <<: *csharpGetToken
-          - <<: *goGetToken
-          - <<: *javaGetToken
-          - <<: *nodeGetToken
-          - <<: *phpGetToken
-          - <<: *pythonGetToken
-          - <<: *rubyGetToken
-  - title: "Calling your API"
-    contentBlocks:
       - type: markdown
         source: "quickstart/markdown/access-api.md"
       - type: snippet
         sources:
-          - <<: *curlCallApi
-          - <<: *csharpCallApi
-          - <<: *goCallApi
-          - <<: *javaCallApi
-          - <<: *nodeCallApi
-          - <<: *phpCallApi
-          - <<: *pythonCallApi
-          - <<: *rubyCallApi
-
-# curl:
-#   - title: "Obtaining an Access Token"
-#     contentBlocks:
-#       - type: markdown
-#         source: "quickstart/markdown/obtain-access-token.md"
-#       - type: snippet
-#         <<: *curlGetToken
-#   - title: "Calling your API"
-#     contentBlocks:
-#       - type: markdown
-#         source: "quickstart/markdown/access-api.md"
-#       - type: snippet
-#         <<: *curlCallApi
+          - <<: *m2mCsharp
+          - <<: *m2mGo
+          - <<: *m2mJava
+          - <<: *m2mNode
+          - <<: *m2mPhp
+          - <<: *m2mPython
+          - <<: *m2mRuby
+  - title: "Run"
+    contentBlocks:
+      - type: snippet
+        sources:
+          - <<: *runCsharp
+          - <<: *runGo
+          - <<: *runJava
+          - <<: *runNode
+          - <<: *runPhp
+          - <<: *runPython
+          - <<: *runRuby
 
 nextSteps:
   links:
@@ -193,5 +137,3 @@ nextSteps:
       url: "https://auth0.com/docs/get-started/onboarding/self-service-m2m"
     - label: "Using Machine to Machine (M2M) Authorization"
       url: "https://auth0.com/blog/using-m2m-authorization/"
-
-envSnippet: *env
