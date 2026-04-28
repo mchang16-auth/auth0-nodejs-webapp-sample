@@ -47,25 +47,32 @@ snippets:
     language: "bash"
   m2mCsharp: &m2mCsharp
     source: "csharp/m2m.cs"
-    language: "csharp"
+    language: "cs"
+    technology: "csharp"
   m2mGo: &m2mGo
     source: "go/m2m.go"
     language: "go"
+    technology: "go"
   m2mJava: &m2mJava
     source: "java/m2m.java"
     language: "java"
+    technology: "java"
   m2mNode: &m2mNode
     source: "node/m2m.js"
     language: "nodejs"
+    technology: "nodejs"
   m2mPhp: &m2mPhp
     source: "php/m2m.php"
     language: "php"
+    technology: "php"
   m2mPython: &m2mPython
     source: "python/m2m.py"
     language: "python"
+    technology: "python"
   m2mRuby: &m2mRuby
     source: "ruby/m2m.rb"
     language: "ruby"
+    technology: "ruby"
   runCsharp: &runCsharp
     source: "csharp/run.sh"
     language: "bash"

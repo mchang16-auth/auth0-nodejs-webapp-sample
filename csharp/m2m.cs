@@ -5,16 +5,15 @@ var client = new HttpClient();
 
 Console.WriteLine("Requesting access token from https://%AUTH0_DOMAIN%/oauth/token...");
 
+var secret = Environment.GetEnvironmentVariable("AUTH0_CLIENT_SECRET");
 var tokenRes = await client.PostAsync("https://%AUTH0_DOMAIN%/oauth/token",
-  new StringContent($$"""
-    {
-      "client_id": "%AUTH0_CLIENT_ID%",
-      "client_secret": "{{Environment.GetEnvironmentVariable("AUTH0_CLIENT_SECRET")}}",
-      "audience": "%AUTH0_AUDIENCE%",
-      "scope": "%AUTH0_SCOPE%",
-      "grant_type": "client_credentials"
-    }
-    """, System.Text.Encoding.UTF8, "application/json"));
+  new StringContent(
+    "{\"client_id\":\"%AUTH0_CLIENT_ID%\","
+    + "\"client_secret\":\"" + secret + "\","
+    + "\"audience\":\"%AUTH0_AUDIENCE%\","
+    + "\"scope\":\"%AUTH0_SCOPE%\","
+    + "\"grant_type\":\"client_credentials\"}",
+    System.Text.Encoding.UTF8, "application/json"));
 
 tokenRes.EnsureSuccessStatusCode();
 var token = JsonDocument.Parse(await tokenRes.Content.ReadAsStringAsync()).RootElement;
