@@ -56,5 +56,9 @@ func main() {
 	apiBody, _ := io.ReadAll(apiRes.Body)
 	var pretty bytes.Buffer
 	json.Indent(&pretty, apiBody, "", "  ")
-	fmt.Println("API response:", pretty.String())
+	fmt.Println("API response:")
+	fmt.Println(pretty.String())
+
+	parts := strings.SplitN(token["access_token"].(string), ".", 3)
+	fmt.Printf("\ninspect the token at https://jwt.io/#value=%s.%s\n", parts[0], parts[1])
 }

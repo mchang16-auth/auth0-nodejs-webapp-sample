@@ -33,5 +33,6 @@ if (!apiResponse.ok) {
   process.exit(1);
 }
 
-console.log("API response:", await apiResponse.json());
-console.log(`inspect the token at https://jwt.io/#value=${header}.${payload}\n`);
+console.log("API response:");
+console.log(JSON.stringify(await apiResponse.json(), null, 2));
+console.log(`\ninspect the token at https://jwt.io/#value=${header}.${payload}`);

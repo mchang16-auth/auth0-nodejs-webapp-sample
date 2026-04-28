@@ -12,7 +12,8 @@ token = JSON.parse(Net::HTTP.post(URI("https://%AUTH0_DOMAIN%/oauth/token"), {
   grant_type: "client_credentials"
 }.to_json, "content-type" => "application/json").body)
 
-puts "Access token obtained."
+header, payload = token['access_token'].split('.')[0..1]
+puts "Access token obtained. Scopes: #{token['scope']}. Expires in #{token['expires_in'].to_i} seconds.\n\n"
 # In production, cache this token and only renew it before it expires --
 # no need to request a new one for every API call.
 
@@ -22,4 +23,6 @@ api_uri = URI("%API_ENDPOINT%")
 req = Net::HTTP::Get.new(api_uri)
 req["authorization"] = "#{token['token_type']} #{token['access_token']}"
 res = Net::HTTP.start(api_uri.hostname, api_uri.port, use_ssl: true) { |http| http.request(req) }
-puts "API response: #{JSON.pretty_generate(JSON.parse(res.body))}"
+puts "API response:"
+puts JSON.pretty_generate(JSON.parse(res.body))
+puts "\ninspect the token at https://jwt.io/#value=#{header}.#{payload}"

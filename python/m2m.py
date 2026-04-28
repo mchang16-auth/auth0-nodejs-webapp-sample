@@ -17,7 +17,8 @@ token_res = urlopen(Request(
 ))
 
 token = json.loads(token_res.read())
-print("Access token obtained.")
+header, payload = token["access_token"].split(".")[:2]
+print(f"Access token obtained. Scopes: {token['scope']}. Expires in {token['expires_in']} seconds.\n")
 # In production, cache this token and only renew it before it expires --
 # no need to request a new one for every API call.
 
@@ -28,4 +29,6 @@ api_res = urlopen(Request(
     headers={"authorization": token["token_type"] + " " + token["access_token"]}
 ))
 
-print("API response:", api_res.read().decode())
+print("API response:")
+print(json.dumps(json.loads(api_res.read().decode()), indent=2))
+print(f"\ninspect the token at https://jwt.io/#value={header}.{payload}")

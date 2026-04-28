@@ -35,7 +35,14 @@ public class m2m {
       System.exit(1);
     }
     var accessToken = m.group(1);
-    System.out.println("Access token obtained.");
+
+    var scopeM = Pattern.compile("\"scope\"\\s*:\\s*\"([^\"]+)\"").matcher(tokenRes.body());
+    var scope = scopeM.find() ? scopeM.group(1) : "";
+    var expiresM = Pattern.compile("\"expires_in\"\\s*:\\s*(\\d+)").matcher(tokenRes.body());
+    var expiresIn = expiresM.find() ? expiresM.group(1) : "0";
+
+    var parts = accessToken.split("\\.");
+    System.out.println("Access token obtained. Scopes: " + scope + ". Expires in " + expiresIn + " seconds.\n");
     // In production, cache this token and only renew it before it expires --
     // no need to request a new one for every API call.
 
@@ -50,6 +57,8 @@ public class m2m {
       System.exit(1);
     }
 
-    System.out.println("API response: " + apiRes.body());
+    System.out.println("API response:");
+    System.out.println(apiRes.body());
+    System.out.println("\ninspect the token at https://jwt.io/#value=" + parts[0] + "." + parts[1]);
   }
 }
