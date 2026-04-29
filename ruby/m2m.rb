@@ -20,7 +20,7 @@ puts "Access token obtained. Scopes: #{token['scope']}. Expires in #{token['expi
 puts "Calling API at %API_ENDPOINT%..."
 
 api_uri = URI("%API_ENDPOINT%")
-req = Net::HTTP::Get.new(api_uri)
+req = Net::HTTP.const_get("%HTTP_METHOD%".capitalize).new(api_uri)
 req["authorization"] = "#{token['token_type']} #{token['access_token']}"
 res = Net::HTTP.start(api_uri.hostname, api_uri.port, use_ssl: true) { |http| http.request(req) }
 puts "API response:"

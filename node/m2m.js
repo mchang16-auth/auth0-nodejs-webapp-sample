@@ -25,6 +25,7 @@ console.log(`Access token obtained. Scopes: ${scope}. Expires in ${expires_in} s
 
 console.log("Calling API at %API_ENDPOINT%...");
 const apiResponse = await fetch("%API_ENDPOINT%", {
+  method: "%HTTP_METHOD%",
   headers: { authorization: `${token_type} ${access_token}` },
 });
 

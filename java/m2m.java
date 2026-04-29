@@ -50,6 +50,7 @@ public class m2m {
     var apiRes = client.send(HttpRequest.newBuilder()
       .uri(URI.create("%API_ENDPOINT%"))
       .header("Authorization", "Bearer " + accessToken)
+      .method("%HTTP_METHOD%", BodyPublishers.noBody())
       .build(), BodyHandlers.ofString());
 
     if (apiRes.statusCode() != 200) {

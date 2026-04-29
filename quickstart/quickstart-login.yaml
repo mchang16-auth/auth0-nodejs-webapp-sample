@@ -10,6 +10,8 @@ inputs:
   auth0Scope:
   selectedApi:
   apiEndpoint:
+  httpMethod:
+    default: "GET"
 
 placeholders:
   "%AUTH0_DOMAIN%":
@@ -26,6 +28,8 @@ placeholders:
     inputKey: "selectedApi"
   "%API_ENDPOINT%":
     inputKey: "apiEndpoint"
+  "%HTTP_METHOD%":
+    inputKey: "httpMethod"
 
 snippets:
   envBash: &envBash

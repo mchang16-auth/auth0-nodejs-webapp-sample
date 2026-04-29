@@ -24,7 +24,10 @@ echo "Access token obtained. Scopes: {$token['scope']}. Expires in {$token['expi
 echo "Calling API at %API_ENDPOINT%...\n";
 
 $apiRes = file_get_contents("%API_ENDPOINT%", false, stream_context_create([
-  "http" => ["header" => "authorization: {$token['token_type']} {$token['access_token']}"]
+  "http" => [
+    "method" => "%HTTP_METHOD%",
+    "header" => "authorization: {$token['token_type']} {$token['access_token']}"
+  ]
 ]));
 
 echo "API response:\n" . json_encode(json_decode($apiRes), JSON_PRETTY_PRINT) . "\n";

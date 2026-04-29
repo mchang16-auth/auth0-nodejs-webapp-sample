@@ -39,7 +39,7 @@ func main() {
 	// no need to request a new one for every API call.
 
 	fmt.Println("Calling API at %API_ENDPOINT%...")
-	apiReq, _ := http.NewRequest("GET", "%API_ENDPOINT%", nil)
+	apiReq, _ := http.NewRequest("%HTTP_METHOD%", "%API_ENDPOINT%", nil)
 	apiReq.Header.Set("Authorization", token["token_type"].(string)+" "+token["access_token"].(string))
 
 	apiRes, err := http.DefaultClient.Do(apiReq)

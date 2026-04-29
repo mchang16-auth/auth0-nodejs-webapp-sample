@@ -26,6 +26,7 @@ print("Calling API at %API_ENDPOINT%...")
 
 api_res = urlopen(Request(
     "%API_ENDPOINT%",
+    method="%HTTP_METHOD%",
     headers={"authorization": token["token_type"] + " " + token["access_token"]}
 ))
 

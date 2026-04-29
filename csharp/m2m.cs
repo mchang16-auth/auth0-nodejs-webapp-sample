@@ -24,7 +24,7 @@ Console.WriteLine($"Access token obtained. Scopes: {token.GetProperty("scope")}.
 // no need to request a new one for every API call.
 
 Console.WriteLine("Calling API at %API_ENDPOINT%...");
-var apiReq = new HttpRequestMessage(HttpMethod.Get, "%API_ENDPOINT%");
+var apiReq = new HttpRequestMessage(new HttpMethod("%HTTP_METHOD%"), "%API_ENDPOINT%");
 apiReq.Headers.Add("Authorization", $"{token.GetProperty("token_type")} {accessToken}");
 var apiRes = await client.SendAsync(apiReq);
 apiRes.EnsureSuccessStatusCode();
